@@ -36,7 +36,7 @@ public class GlobalAuditEventController {
     public ResponseEntity<?> postAuditEvent(@RequestBody GlobalAuditEvent globalAuditEvent) {
         logger.debug("Received Global Audit Event : {}", globalAuditEvent);
         if (globalAuditEvent.getAudit().getDomain().equalsIgnoreCase(REPOSITORY_ASSET)) {
-            StringJoiner stringJoiner = new StringJoiner(":", "[", "]");
+            StringJoiner stringJoiner = new StringJoiner("|", "[", "]");
             String data = stringJoiner.add(globalAuditEvent.getAudit().getAttributes().getRepositoryName()).
                     add(globalAuditEvent.getAudit().getAttributes().getName()).
                     add(globalAuditEvent.getAudit().getType()).toString();
